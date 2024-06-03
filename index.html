@@ -11,7 +11,7 @@
     padding: 0;
     font-family: 'poppins',sans-serif;
     box-sizing: border-box;
-    background-color: white;
+    background-color:black;
 
 }
 .main{
@@ -65,8 +65,52 @@
             font-size: 16px;
             cursor: pointer;
         }
+        label{
+            width: 80px;
+            height: 80px;
+            /* background: red; */
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
+
+        }
+        #a1{
+            position: absolute;
+            opacity: 0;
+        }
+        .moon{
+            font-size: 40px;
+            color: #666;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,.5));
+        }
+        .sun{
+            position: absolute;
+            font-size: 40px;
+            color: #666;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,.5));
+            transform: scale(0);
+        }
+        input:checked~.moon{
+            transform: rotate(360deg) scale(0);
+        }
+        input:checked~.sun{
+            transform:scale(1) rotate(360deg);
+        }
+
+
+        .toggle{
+            position: absolute;
+            display: block;
+            width: 80px;
+            height: 80px;
+            background: #2b2b2b;
+            border-radius: 50%;
+        }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -78,7 +122,13 @@
                 <span id="min">00</span>
                 <span>:</span>
                 <span id="sec">00</span>
-                <button class="rounded" id="toggleButton">Change Theme</button>
+                <!-- <button class="rounded" id="toggleButton">Change Theme</button> -->
+                <label for="a1">
+                    <input id="a1" type="checkbox">
+                    <i class="fa-solid fa-sun sun"></i>
+                    <i class="fa-solid fa-moon moon"></i>
+                    <!-- <span class="toggle1"></span> -->
+                </label>
 
 
 
@@ -96,19 +146,19 @@
 
             hrs.innerHTML=(currentTime.getHours()<10?"0":"") +currentTime.getHours() ;
          min.innerHTML=(currentTime.getMinutes()<10?"0":"") +currentTime.getMinutes() ;
-         sec.innerHTML=(currentTime.getMinutes()<10?"0":"") +currentTime.getSeconds() ;
+         sec.innerHTML=(currentTime.getSeconds()<10?"0":"") +currentTime.getSeconds() ;
 
 
         },1000)
 
-        const button = document.getElementById('toggleButton');
+        const button = document.getElementById('a1');
         let isDefaultColor = true;
 
         button.addEventListener('click', () => {
             if (isDefaultColor) {
-                document.body.style.backgroundColor = 'black';
-            } else {
                 document.body.style.backgroundColor = 'white';
+            } else {
+                document.body.style.backgroundColor = 'black';
             }
             isDefaultColor = !isDefaultColor;
         });
